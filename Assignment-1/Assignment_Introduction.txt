@@ -1,0 +1,63 @@
+This file is for the future save intro data
+Date:30/08/2026
+Assignment: Multi-Gateway Payment Processing Engine
+System Architecture & Requirements 
+                  ┌──────────────────────┐
+                  │   AggregatorFactory  │
+                  └──────────┬───────────┘
+                             │ creates
+                             ▼
+                  ┌──────────────────────┐
+                  │    BaseAggregator    │ (Abstract)
+                  └──────────┬───────────┘
+               ┌─────────────┴─────────────┐
+               ▼                           ▼
+      ┌─────────────────┐         ┌─────────────────┐
+      │ StripeAggregator│         │RazorpayAggregator│
+      └────────┬────────┘         └────────┬────────┘
+               │ delegates                 │ delegates
+               ▼                           ▼
+      ┌─────────────────┐         ┌─────────────────┐
+      │  StripeFactory  │         │ RazorpayFactory │
+      └────────┬────────┘         └────────┬────────┘
+               │ creates                   │ creates
+               ▼                           ▼
+     [StripeCard / StripeUPI]     [RazorpayCard / RazorpayUPI]
+
+Task 1: Payment Method Hierarchy
+	Create an abstract base class PaymentMethod containing:
+	@abstractmethod def get_details(self) -> str
+	@abstractmethod def pay(self, amount: float) -> bool
+	Implement concrete subclasses:
+	RazorpayCardPayment & RazorpayUPIPayment
+	StripeCardPayment & StripeUPIPayment
+
+Task 2: Payment Method Factory (Abstract Factory)
+	Create an abstract class FactoryPaymentMethod:
+	Class-level dictionary factory: Dict[str, Type[PaymentMethod]]
+	@classmethod def get_payment_object(cls, method_type: str, **kwargs) -> PaymentMethod
+	Implement concrete factory subclasses:
+	RazorpayFactory: Maps "card" → RazorpayCardPayment, "upi" → RazorpayUPIPayment.
+	StripeFactory: Maps "card" → StripeCardPayment, "upi" → StripeUPIPayment.
+
+Task 3: Aggregator Hierarchy
+	Create an abstract base class Aggregator:
+	Field: name: str
+	Method: call_get_payment_object(self, method_type: str, amount: float, **kwargs) -> bool that delegates object creation to its respective payment method factory and calls .pay(amount).
+	Implement concrete aggregator classes:
+	RazorpayAggregator: Includes a processing_fee field (e.g., 2.0%) and uses RazorpayFactory.
+	StripeAggregator: Includes a processing_fee field (e.g., 2.9%) and uses StripeFactory.
+
+Task 4: Aggregator Factory
+	Create a concrete class AggregatorFactory:
+	Dictionary mapping: factory = {"stripe": StripeAggregator, "razorpay": RazorpayAggregator}
+	@classmethod def get_aggregator_object(cls, aggregator_name: str) -> Aggregator
+
+Task 5: CLI Client Workflow
+Write an entry-point script taking user input from the console:
+	Select Aggregator (stripe / razorpay).
+	Select Method (card / upi).
+	Enter Payment Details (Card number or UPI ID) and Amount.
+	Route the execution dynamically:
+"AggregatorFactory"-> ("creates" ) "Aggregator" ->("invokes" ) "PaymentFactory" -> ("creates" ) "PaymentMethod"-> ("executes" ) "pay()" 
+
