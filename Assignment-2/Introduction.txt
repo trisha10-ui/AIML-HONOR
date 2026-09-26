@@ -1,1 +1,2 @@
-This file is saved for future data 
+ Assignment 2: Menu-driven program - class to perform CRUD operations
+ on an Employee table stored in a CSV file (using Python's built-in csv/file handling module).
