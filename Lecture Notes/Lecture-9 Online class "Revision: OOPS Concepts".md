@@ -40,58 +40,58 @@ memory-ram of your pc
 #instance of class is called as object.
 
 
-abc=classname()
-e.g user class
+            abc=classname()
+            e.g user class
 
-class User:
-#class variable
-id=0
-#constructor
-#self reference
-#instance reference 
-def__init__(self,name):
-#instance variable
-#self.variable_name
-self.name=name
-self.employee_id=user.id+1
-user.id+=1
+            class User:
+            #class variable
+            id=0
+            #constructor
+            #self reference
+            #instance reference 
+            def__init__(self,name):
+            #instance variable
+            #self.variable_name
+            self.name=name
+            self.employee_id=user.id+1
+            user.id+=1
 
-def get_user_info(self):
-    print(f"user_id: {self.user_id},"name: {self.name}") 
-
-
-#class function
-@classmethod
-def employee_count(cls):
-    print(User.id)
-
-@staticmethod()
-def static_user():
-    count=0
-    return "user"
-
-def__init__(self,name)
-
-#self variable
-
-def get_user_info(self):
-    print(f"user_id: {self.user_id},"name: {self.name}")
+            def get_user_info(self):
+                print(f"user_id: {self.user_id},"name: {self.name}") 
 
 
-@staticmethod()
-def static_user():
-    count=0
-    return "user"
+            #class function
+            @classmethod
+            def employee_count(cls):
+                    print(User.id)
+
+            @staticmethod()
+            def static_user():
+              count=0
+                return "user"
+
+            def__init__(self,name)
+
+            #self variable
+
+            def get_user_info(self):
+            print(f"user_id: {self.user_id},"name: {self.name}")
 
 
-User.employee_count
-obj=user()
-obj=User("Trisha")  #constructor automatically called.add()
-obj.get_user_info() #explicitly  calling function
+            @staticmethod()
+            def static_user():
+            count=0
+            return "user"
 
-##u can call as
-User.static_user
-obj.static
+
+            User.employee_count
+            obj=user()
+            obj=User("Trisha")  #constructor automatically called.add()
+            obj.get_user_info() #explicitly  calling function
+
+            ##u can call as
+            User.static_user
+            obj.static
 
 #class-properties-oops
 #object oriented programming system
@@ -110,22 +110,22 @@ obj.static
 #compile- function is identified in compile time
 #runtime - jab runtime pr work ho 
 
-class user:
-    def user():
-        def user(this,name):
-            def user(this,name,mobile)
+           class user:
+            def user():
+            def user(this,name):
+             def user(this,name,mobile)
 
 #hierarchy-  composition and inheritance 
 #inheritance - parent - child behavior 
 
-class department:
-    self.name=dept_name
+        class department:
+            self.name=dept_name
 
-class Employee(user):
-    def__init__(self,name,mobile,dept_name): # runtime poly
-        self.__super__(self,name,mobile)
-        self.dept=Department(dept_name) # composition 
-
+        class Employee(user):
+            def__init__(self,name,mobile,dept_name): # runtime poly
+                self.__super__(self,name,mobile)
+                self.dept=Department(dept_name) # composition 
+    
         def get_user_info(self): #runtime polu
         print((f"user_id): {user_id} user_name: {self.name} dept_name:
         {dept_name}")
